@@ -15,6 +15,7 @@
 		2F074EFEA94143B985D75DA4 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8C8C7CA3D6A47CE925EDD34 /* Roboto-Light.ttf */; };
 		32307A0B7D70452DBA6652C0 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35DD5D00098A447585E136F0 /* Roboto-Bold.ttf */; };
 		40E84233143B4DB5A2DCC9EB /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 42A110C621664E9AB02651EF /* Roboto-Regular.ttf */; };
+		66A2F1F234380FF3876C0626 /* libPods-ILPlanner-ILPlannerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B31DDF27EB8B8F9152F95596 /* libPods-ILPlanner-ILPlannerTests.a */; };
 		6F987F50B84C42039D4BF7EB /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D6E6E65B1F443F08C7E83E9 /* Roboto-BoldItalic.ttf */; };
 		70A2D95FC86948668BD31D64 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C135CE1D19B4474BAE6C0AF /* Roboto-BlackItalic.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -22,10 +23,9 @@
 		A69545BE913947EC9A3A5112 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46B5598D87124274824E5922 /* Roboto-Black.ttf */; };
 		AF976B48087240D8A78D8DD7 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D9DC03A77BF34533A2A4972A /* Roboto-MediumItalic.ttf */; };
 		C0A3B915D8774E0B9E50C725 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 253262CD788C41B686DF7752 /* Roboto-Medium.ttf */; };
+		C8A0CDAC5A78014ABCF7B3AD /* libPods-ILPlanner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC32E69D2C14B691B94F8B0 /* libPods-ILPlanner.a */; };
 		D59664CB0B604E73A831B49F /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E7C4BA4F7664425AFD23545 /* Roboto-LightItalic.ttf */; };
 		E93F567334764DBDB2038193 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2FBA52E763DA4F1C87A607A9 /* Roboto-Italic.ttf */; };
-		EF4FD981D67D15E6DFB50627 /* libPods-ILPlanner-ILPlannerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82758F841BA70952E64FA7B3 /* libPods-ILPlanner-ILPlannerTests.a */; };
-		F23CE7C71AF03B1DFDF797A5 /* libPods-ILPlanner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F63CBBE3B7EA1684888549A /* libPods-ILPlanner.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +42,6 @@
 		00E356EE1AD99517003FC87E /* ILPlannerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ILPlannerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* ILPlannerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ILPlannerTests.m; sourceTree = "<group>"; };
-		08C4753FE80AC865445AF8E9 /* Pods-ILPlanner-ILPlannerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ILPlanner-ILPlannerTests.debug.xcconfig"; path = "Target Support Files/Pods-ILPlanner-ILPlannerTests/Pods-ILPlanner-ILPlannerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* ILPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ILPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ILPlanner/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ILPlanner/AppDelegate.m; sourceTree = "<group>"; };
@@ -53,20 +52,21 @@
 		2FBA52E763DA4F1C87A607A9 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Italic.ttf"; path = "../src/assets/fonts/Roboto/Roboto-Italic.ttf"; sourceTree = "<group>"; };
 		307B36CAD3524DD6973457C7 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-ThinItalic.ttf"; path = "../src/assets/fonts/Roboto/Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
 		35DD5D00098A447585E136F0 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../src/assets/fonts/Roboto/Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		42588F16366120B0F76544CB /* Pods-ILPlanner-ILPlannerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ILPlanner-ILPlannerTests.release.xcconfig"; path = "Target Support Files/Pods-ILPlanner-ILPlannerTests/Pods-ILPlanner-ILPlannerTests.release.xcconfig"; sourceTree = "<group>"; };
 		42A110C621664E9AB02651EF /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../src/assets/fonts/Roboto/Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		46B5598D87124274824E5922 /* Roboto-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Black.ttf"; path = "../src/assets/fonts/Roboto/Roboto-Black.ttf"; sourceTree = "<group>"; };
+		5AC32E69D2C14B691B94F8B0 /* libPods-ILPlanner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ILPlanner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E7C4BA4F7664425AFD23545 /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-LightItalic.ttf"; path = "../src/assets/fonts/Roboto/Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
-		67E27E46FD7ED4F75327D681 /* Pods-ILPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ILPlanner.release.xcconfig"; path = "Target Support Files/Pods-ILPlanner/Pods-ILPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		7C135CE1D19B4474BAE6C0AF /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-BlackItalic.ttf"; path = "../src/assets/fonts/Roboto/Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ILPlanner/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		82758F841BA70952E64FA7B3 /* libPods-ILPlanner-ILPlannerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ILPlanner-ILPlannerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A6C4E62D821823472FC1144 /* Pods-ILPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ILPlanner.debug.xcconfig"; path = "Target Support Files/Pods-ILPlanner/Pods-ILPlanner.debug.xcconfig"; sourceTree = "<group>"; };
 		9D6E6E65B1F443F08C7E83E9 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-BoldItalic.ttf"; path = "../src/assets/fonts/Roboto/Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
-		9F63CBBE3B7EA1684888549A /* libPods-ILPlanner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ILPlanner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3F907AD032E40A9897AEAD2 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Thin.ttf"; path = "../src/assets/fonts/Roboto/Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		B31DDF27EB8B8F9152F95596 /* libPods-ILPlanner-ILPlannerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ILPlanner-ILPlannerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9DC03A77BF34533A2A4972A /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-MediumItalic.ttf"; path = "../src/assets/fonts/Roboto/Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
-		E9F997AD3CA3B988D227A7DF /* Pods-ILPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ILPlanner.debug.xcconfig"; path = "Target Support Files/Pods-ILPlanner/Pods-ILPlanner.debug.xcconfig"; sourceTree = "<group>"; };
-		EB44AEEC682F269FD6A44E8A /* Pods-ILPlanner-ILPlannerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ILPlanner-ILPlannerTests.release.xcconfig"; path = "Target Support Files/Pods-ILPlanner-ILPlannerTests/Pods-ILPlanner-ILPlannerTests.release.xcconfig"; sourceTree = "<group>"; };
+		E2F7019B7A7C2EBF126B2F6C /* Pods-ILPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ILPlanner.release.xcconfig"; path = "Target Support Files/Pods-ILPlanner/Pods-ILPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F7D478C06626AB23E5F070FD /* Pods-ILPlanner-ILPlannerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ILPlanner-ILPlannerTests.debug.xcconfig"; path = "Target Support Files/Pods-ILPlanner-ILPlannerTests/Pods-ILPlanner-ILPlannerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F8C8C7CA3D6A47CE925EDD34 /* Roboto-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Light.ttf"; path = "../src/assets/fonts/Roboto/Roboto-Light.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF4FD981D67D15E6DFB50627 /* libPods-ILPlanner-ILPlannerTests.a in Frameworks */,
+				66A2F1F234380FF3876C0626 /* libPods-ILPlanner-ILPlannerTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F23CE7C71AF03B1DFDF797A5 /* libPods-ILPlanner.a in Frameworks */,
+				C8A0CDAC5A78014ABCF7B3AD /* libPods-ILPlanner.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,22 +144,10 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				9F63CBBE3B7EA1684888549A /* libPods-ILPlanner.a */,
-				82758F841BA70952E64FA7B3 /* libPods-ILPlanner-ILPlannerTests.a */,
+				5AC32E69D2C14B691B94F8B0 /* libPods-ILPlanner.a */,
+				B31DDF27EB8B8F9152F95596 /* libPods-ILPlanner-ILPlannerTests.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		4963257B061DBAF26C8A4623 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				E9F997AD3CA3B988D227A7DF /* Pods-ILPlanner.debug.xcconfig */,
-				67E27E46FD7ED4F75327D681 /* Pods-ILPlanner.release.xcconfig */,
-				08C4753FE80AC865445AF8E9 /* Pods-ILPlanner-ILPlannerTests.debug.xcconfig */,
-				EB44AEEC682F269FD6A44E8A /* Pods-ILPlanner-ILPlannerTests.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -177,8 +165,8 @@
 				00E356EF1AD99517003FC87E /* ILPlannerTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				4963257B061DBAF26C8A4623 /* Pods */,
 				1683D15977B84978BB1FD5F3 /* Resources */,
+				EF77723621A8DFA331587BB1 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -194,6 +182,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		EF77723621A8DFA331587BB1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8A6C4E62D821823472FC1144 /* Pods-ILPlanner.debug.xcconfig */,
+				E2F7019B7A7C2EBF126B2F6C /* Pods-ILPlanner.release.xcconfig */,
+				F7D478C06626AB23E5F070FD /* Pods-ILPlanner-ILPlannerTests.debug.xcconfig */,
+				42588F16366120B0F76544CB /* Pods-ILPlanner-ILPlannerTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -201,12 +201,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ILPlannerTests" */;
 			buildPhases = (
-				A8A9A9BA897D8D517F5EE2D0 /* [CP] Check Pods Manifest.lock */,
+				549531706C1EFD5F7FDB663D /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				7B45FAF92985EB698D486A26 /* [CP] Embed Pods Frameworks */,
-				69E2B7D73D7BF6C6D7ABD5AD /* [CP] Copy Pods Resources */,
+				1E24B4B1B30E7E0730276777 /* [CP] Embed Pods Frameworks */,
+				B2C8CD95DD7377785384C7C0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -222,14 +222,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ILPlanner" */;
 			buildPhases = (
-				DA7CE5CC5BDD7FE8B44DFDAC /* [CP] Check Pods Manifest.lock */,
+				70B70C92A392973FD1997324 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				58F1BDEC06FCCF6F36793296 /* [CP] Embed Pods Frameworks */,
-				DBA097AC071546FE0AE6D299 /* [CP] Copy Pods Resources */,
+				154C9FD4F88D15F250BD9FA7 /* [CP] Embed Pods Frameworks */,
+				24ED7B59434447F075574CA0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -322,7 +322,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		58F1BDEC06FCCF6F36793296 /* [CP] Embed Pods Frameworks */ = {
+		154C9FD4F88D15F250BD9FA7 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -339,24 +339,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ILPlanner/Pods-ILPlanner-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		69E2B7D73D7BF6C6D7ABD5AD /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ILPlanner-ILPlannerTests/Pods-ILPlanner-ILPlannerTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ILPlanner-ILPlannerTests/Pods-ILPlanner-ILPlannerTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ILPlanner-ILPlannerTests/Pods-ILPlanner-ILPlannerTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7B45FAF92985EB698D486A26 /* [CP] Embed Pods Frameworks */ = {
+		1E24B4B1B30E7E0730276777 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -373,7 +356,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ILPlanner-ILPlannerTests/Pods-ILPlanner-ILPlannerTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A8A9A9BA897D8D517F5EE2D0 /* [CP] Check Pods Manifest.lock */ = {
+		24ED7B59434447F075574CA0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ILPlanner/Pods-ILPlanner-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ILPlanner/Pods-ILPlanner-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ILPlanner/Pods-ILPlanner-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		549531706C1EFD5F7FDB663D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -395,7 +395,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DA7CE5CC5BDD7FE8B44DFDAC /* [CP] Check Pods Manifest.lock */ = {
+		70B70C92A392973FD1997324 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -417,21 +417,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DBA097AC071546FE0AE6D299 /* [CP] Copy Pods Resources */ = {
+		B2C8CD95DD7377785384C7C0 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ILPlanner/Pods-ILPlanner-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ILPlanner-ILPlannerTests/Pods-ILPlanner-ILPlannerTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ILPlanner/Pods-ILPlanner-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ILPlanner-ILPlannerTests/Pods-ILPlanner-ILPlannerTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ILPlanner/Pods-ILPlanner-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ILPlanner-ILPlannerTests/Pods-ILPlanner-ILPlannerTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -486,7 +486,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 08C4753FE80AC865445AF8E9 /* Pods-ILPlanner-ILPlannerTests.debug.xcconfig */;
+			baseConfigurationReference = F7D478C06626AB23E5F070FD /* Pods-ILPlanner-ILPlannerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -513,7 +513,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EB44AEEC682F269FD6A44E8A /* Pods-ILPlanner-ILPlannerTests.release.xcconfig */;
+			baseConfigurationReference = 42588F16366120B0F76544CB /* Pods-ILPlanner-ILPlannerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -537,7 +537,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E9F997AD3CA3B988D227A7DF /* Pods-ILPlanner.debug.xcconfig */;
+			baseConfigurationReference = 8A6C4E62D821823472FC1144 /* Pods-ILPlanner.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -563,7 +563,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 67E27E46FD7ED4F75327D681 /* Pods-ILPlanner.release.xcconfig */;
+			baseConfigurationReference = E2F7019B7A7C2EBF126B2F6C /* Pods-ILPlanner.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

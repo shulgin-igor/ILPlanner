@@ -1,42 +1,61 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
+import {TabBar, TabView} from 'react-native-tab-view';
 import {Specs} from './components/specs/Specs';
 import {Company} from './components/company/Company';
 import {Docs} from './components/docs/Docs';
 import {Gallery} from './components/gallery/Gallery';
+import {getComplexInfo} from '../../services/complex.service';
+import {RootState} from '../../store';
+import {connect} from 'react-redux';
 
-const renderScene = SceneMap({
-  specs: () => <Specs />,
-  company: () => <Company />,
-  docs: () => <Docs />,
-  gallery: () => <Gallery />,
-});
+class About extends React.Component<any, any> {
+  state: any = {
+    index: 0,
+    routes: [
+      {
+        key: 'specs',
+        title: 'Характеристики',
+      },
+      {
+        key: 'gallery',
+        title: 'Галерея',
+      },
+      {
+        key: 'company',
+        title: 'Девелопер',
+      },
+      {
+        key: 'docs',
+        title: 'Документы',
+      },
+    ],
+    complex: null,
+    loaded: false,
+  };
 
-export class About extends React.Component<any, any> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      index: 0,
-      routes: [
-        {
-          key: 'specs',
-          title: 'Характеристики',
-        },
-        {
-          key: 'gallery',
-          title: 'Галерея',
-        },
-        {
-          key: 'company',
-          title: 'Девелопер',
-        },
-        {
-          key: 'docs',
-          title: 'Документы',
-        },
-      ],
-    };
+  async componentDidMount() {
+    const {data} = await getComplexInfo(this.props.complexId);
+    // eslint-disable-next-line react/no-did-mount-set-state
+    this.setState({loaded: true, complex: data});
+  }
+
+  _renderScene({route}: any) {
+    if (!this.state.loaded) {
+      return <Text>Loading</Text>;
+    }
+    switch (route.key) {
+      case 'specs':
+        return <Specs items={this.state.complex?.specs} />;
+      case 'company':
+        return <Company />;
+      case 'docs':
+        return <Docs />;
+      case 'gallery':
+        return <Gallery items={this.state.complex?.gallery} />;
+      default:
+        return null;
+    }
   }
 
   _renderLabel(route: any) {
@@ -67,7 +86,7 @@ export class About extends React.Component<any, any> {
       <TabView
         renderTabBar={props => this._renderTabBar(props)}
         navigationState={{index, routes}}
-        renderScene={renderScene}
+        renderScene={route => this._renderScene(route)}
         onIndexChange={(newIndex: number) => this._setIndex(newIndex)}
       />
     );
@@ -88,3 +107,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#5e76fa',
   },
 });
+
+const mapStateToProps = (state: RootState) => ({
+  complexId: state.app.selectedComplexId,
+});
+
+export default connect(mapStateToProps)(About);

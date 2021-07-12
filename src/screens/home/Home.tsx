@@ -8,44 +8,25 @@ import Building from '../../assets/images/icons/building.svg';
 import Door from '../../assets/images/icons/open-door.svg';
 import Megaphone from '../../assets/images/icons/megaphone.svg';
 import Header from './components/header/Header';
+import {getHome} from '../../services/home.service';
+import {AppDispatch} from '../../store';
+import {connect} from 'react-redux';
+import {setSelectedComplexId} from '../../store/appSlice';
 
 const {width: viewportWidth} = Dimensions.get('window');
 
-export class Home extends React.Component<any, any> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      items: [
-        {
-          id: 1,
-          title: 'Голосіївська Долина',
-          address: 'вул. Євгена Коновальця, 19',
-          progress: 0.4,
-          companies: [
-            {
-              image: 'https://kmb.ua/wp-content/uploads/2017/08/logo-1.png',
-              title: 'Київміськбуд',
-            },
-            {
-              image:
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa3KPA88D0t6GdA3PfzC3R24QSGXni9ee7bR7Pm8zSC_HbEypS4Q-GPQawz2BAo8B2fZo&usqp=CAU',
-              title: 'РІЕЛ',
-            },
-            {
-              image:
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa3KPA88D0t6GdA3PfzC3R24QSGXni9ee7bR7Pm8zSC_HbEypS4Q-GPQawz2BAo8B2fZo&usqp=CAU',
-              title: 'РІЕЛ',
-            },
-          ],
-        },
-        {
-          id: 2,
-          title: 'ЖК Заречный',
-          progress: 0.85,
-          companies: [],
-        },
-      ],
-    };
+class Home extends React.Component<any, any> {
+  state: any = {items: []};
+
+  async componentDidMount() {
+    const {data} = await getHome();
+    // eslint-disable-next-line react/no-did-mount-set-state
+    this.setState({items: data});
+    this._onComplexChanged(data[0].id);
+  }
+
+  _onComplexChanged(id: number) {
+    this.props.setSelectedComplexId(id);
   }
 
   _renderItem({item}: any) {
@@ -89,6 +70,11 @@ export class Home extends React.Component<any, any> {
             renderItem={this._renderCarouselItem}
             sliderWidth={viewportWidth}
             itemWidth={viewportWidth - 54}
+            scrollEnabled={this.state.items > 1}
+            onSnapToItem={index => {
+              const id = this.state.items[index].id;
+              this._onComplexChanged(id);
+            }}
           />
         </View>
         <FlatList
@@ -119,3 +105,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 28,
   },
 });
+
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
+  setSelectedComplexId: (id: number) => dispatch(setSelectedComplexId({id})),
+});
+
+export default connect(null, mapDispatchToProps)(Home);

@@ -1,17 +1,17 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 export const authSlice = createSlice({
-  name: 'counter',
+  name: 'auth',
   initialState: {
-    user: null,
+    authenticated: false,
   },
   reducers: {
-    setUser(state, {payload}) {
-      state.user = payload;
+    setAuthenticationStatus(state, {payload}) {
+      state.authenticated = payload;
     },
   },
 });
 
-export const {setUser} = authSlice.actions;
+export const {setAuthenticationStatus} = authSlice.actions;
 
 export default authSlice.reducer;

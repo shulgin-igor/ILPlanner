@@ -1,23 +1,24 @@
 import React from 'react';
 
-import {Home} from './screens/home/Home';
+import Home from './screens/home/Home';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Payments} from './screens/payments/Payments';
-import {About} from './screens/about/About';
+import About from './screens/about/About';
 import 'moment/locale/ru';
 import {News} from './screens/news/News';
 import {MyApartment} from './screens/my-apartment/MyApartment';
 import Back from './assets/images/icons/back.svg';
-import Close from './assets/images/icons/cancel.svg';
-import {TouchableOpacity, View} from 'react-native';
+import {View} from 'react-native';
 import SignIn from './screens/sign-in/SignIn';
 import {connect} from 'react-redux';
-import {RootState} from './store';
+import {AppDispatch, RootState} from './store';
 import Notifications from './screens/notifications/Notifications';
 import Settings from './screens/settings/Settings';
 import screenOptions from './config/screenOptions';
 import CloseModalButton from './components/close-modal-button/CloseModalButton';
+import {getToken} from './services/auth.service';
+import {setAuthenticationStatus} from './store/authSlice';
 
 const RootStack = createStackNavigator();
 const MainStack = createStackNavigator();
@@ -66,6 +67,12 @@ const MainStackScreen = () => {
   );
 };
 class Root extends React.Component<any, any> {
+  async componentDidMount() {
+    const token = await getToken();
+
+    this.props.setAuthenticationStatus(token !== undefined);
+  }
+
   _renderApp() {
     return (
       <NavigationContainer>
@@ -93,7 +100,7 @@ class Root extends React.Component<any, any> {
     return <SignIn />;
   }
   render() {
-    if (this.props.user) {
+    if (this.props.authenticated) {
       return this._renderApp();
     } else {
       return this._renderSignIn();
@@ -102,7 +109,12 @@ class Root extends React.Component<any, any> {
 }
 
 const mapStateToProps = (state: RootState) => ({
-  user: state.auth.user,
+  authenticated: state.auth.authenticated,
 });
 
-export default connect(mapStateToProps)(Root);
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
+  setAuthenticationStatus: (data: boolean) =>
+    dispatch(setAuthenticationStatus(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Root);
