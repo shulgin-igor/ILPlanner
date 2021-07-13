@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import {FlatList, View} from 'react-native';
+import {veryLightPink} from './Colors';
 
 export const ScreenContainer = styled(View)`
   flex: 1;
@@ -24,4 +25,9 @@ export const Card = styled(View)`
   background: #fff;
   padding: 15px 20px;
   margin-bottom: 20px;
+`;
+
+export const Line = styled(View)`
+  height: 2px;
+  background-color: ${veryLightPink};
 `;

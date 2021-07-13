@@ -19,12 +19,12 @@ export class Item extends React.Component<any, any> {
         </View>
         <View style={styles.footer}>
           <View style={styles.footerBlock}>
-            <Text style={styles.label}>Метры</Text>
+            <Text style={styles.label}>Метри</Text>
             <Text style={styles.highlighted}>{meters}</Text>
           </View>
           <View style={styles.footerBlock}>
-            <Text style={styles.label}>Сумма</Text>
-            <Text style={styles.highlighted}>{amount}</Text>
+            <Text style={styles.label}>Сума</Text>
+            <Text style={styles.highlighted}>{amount} грн</Text>
           </View>
         </View>
       </Card>

@@ -8,6 +8,7 @@ import {Gallery} from './components/gallery/Gallery';
 import {getComplexInfo} from '../../services/complex.service';
 import {RootState} from '../../store';
 import {connect} from 'react-redux';
+import Loading from '../../components/loading/Loading';
 
 class About extends React.Component<any, any> {
   state: any = {
@@ -41,9 +42,6 @@ class About extends React.Component<any, any> {
   }
 
   _renderScene({route}: any) {
-    if (!this.state.loaded) {
-      return <Text>Loading</Text>;
-    }
     switch (route.key) {
       case 'specs':
         return <Specs items={this.state.complex?.specs} />;
@@ -81,6 +79,9 @@ class About extends React.Component<any, any> {
     this.setState({index});
   }
   render() {
+    if (!this.state.loaded) {
+      return <Loading />;
+    }
     const {routes, index} = this.state;
     return (
       <TabView

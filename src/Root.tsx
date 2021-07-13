@@ -42,15 +42,19 @@ const MainStackScreen = () => {
         component={Home}
         options={{headerShown: false, cardStyle: {paddingTop: 0}}}
       />
-      <MainStack.Screen name="About" component={About} />
+      <MainStack.Screen
+        name="About"
+        options={{title: 'Про ЖК'}}
+        component={About}
+      />
       <MainStack.Screen
         name="Payments"
-        options={{title: 'Платежи'}}
+        options={{title: 'Платежі'}}
         component={Payments}
       />
       <MainStack.Screen
         name="News"
-        options={{title: 'Новости'}}
+        options={{title: 'Новини'}}
         component={News}
       />
       <MainStack.Screen
@@ -60,7 +64,7 @@ const MainStackScreen = () => {
       />
       <MainStack.Screen
         name="Settings"
-        options={{title: 'Настройки'}}
+        options={{title: 'Налаштування'}}
         component={Settings}
       />
     </MainStack.Navigator>
@@ -86,7 +90,7 @@ class Root extends React.Component<any, any> {
             name="Notifications"
             component={Notifications}
             options={{
-              title: 'Уведомления',
+              title: 'Сповіщення',
               ...screenOptions,
               headerLeft: () => <></>,
               headerRight: () => <CloseModalButton />,
