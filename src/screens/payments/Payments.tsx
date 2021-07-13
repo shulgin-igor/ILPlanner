@@ -2,11 +2,19 @@ import React from 'react';
 import {View} from 'react-native';
 import {Item} from './components/Item';
 import {ScreenContainer, ContentList} from '../../ui/Styles';
-import payments from '../../mocks/payments';
+import {getList} from '../../services/payments.service';
+import {RootState} from '../../store';
+import {connect} from 'react-redux';
 
-export class Payments extends React.Component<any, any> {
+class Payments extends React.Component<any, any> {
+  state = {items: []};
   _renderItem({item}: any) {
     return <Item date={item.date} amount={item.amount} meters={item.meters} />;
+  }
+  async componentDidMount() {
+    const {data} = await getList(this.props.apartmentId);
+    // eslint-disable-next-line react/no-did-mount-set-state
+    this.setState({items: data});
   }
   render() {
     return (
@@ -14,10 +22,16 @@ export class Payments extends React.Component<any, any> {
         <View style={{height: 100, backgroundColor: 'red'}} />
         <ContentList
           listKey="payments"
-          data={payments}
+          data={this.state.items}
           renderItem={this._renderItem}
         />
       </ScreenContainer>
     );
   }
 }
+
+const mapStateToProps = (state: RootState) => ({
+  apartmentId: state.app.selectedApartmentId,
+});
+
+export default connect(mapStateToProps)(Payments);

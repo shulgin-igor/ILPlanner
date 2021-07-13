@@ -3,7 +3,7 @@ import React from 'react';
 import Home from './screens/home/Home';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Payments} from './screens/payments/Payments';
+import Payments from './screens/payments/Payments';
 import About from './screens/about/About';
 import 'moment/locale/ru';
 import {News} from './screens/news/News';

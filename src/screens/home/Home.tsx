@@ -8,10 +8,13 @@ import Building from '../../assets/images/icons/building.svg';
 import Door from '../../assets/images/icons/open-door.svg';
 import Megaphone from '../../assets/images/icons/megaphone.svg';
 import Header from './components/header/Header';
-import {getHome} from '../../services/home.service';
+import {getList} from '../../services/apartments.service';
 import {AppDispatch} from '../../store';
 import {connect} from 'react-redux';
-import {setSelectedComplexId} from '../../store/appSlice';
+import {
+  setSelectedApartmentId,
+  setSelectedComplexId,
+} from '../../store/appSlice';
 
 const {width: viewportWidth} = Dimensions.get('window');
 
@@ -19,14 +22,16 @@ class Home extends React.Component<any, any> {
   state: any = {items: []};
 
   async componentDidMount() {
-    const {data} = await getHome();
+    const {data} = await getList();
     // eslint-disable-next-line react/no-did-mount-set-state
     this.setState({items: data});
-    this._onComplexChanged(data[0].id);
+    this._onApartmentChanged(data[0]);
   }
 
-  _onComplexChanged(id: number) {
-    this.props.setSelectedComplexId(id);
+  _onApartmentChanged(data: any) {
+    console.log(data);
+    this.props.setSelectedApartmentId(data.id);
+    this.props.setSelectedComplexId(data.planning.complex.id);
   }
 
   _renderItem({item}: any) {
@@ -72,8 +77,8 @@ class Home extends React.Component<any, any> {
             itemWidth={viewportWidth - 54}
             scrollEnabled={this.state.items > 1}
             onSnapToItem={index => {
-              const id = this.state.items[index].id;
-              this._onComplexChanged(id);
+              const data = this.state.items[index];
+              this._onApartmentChanged(data);
             }}
           />
         </View>
@@ -108,6 +113,8 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
   setSelectedComplexId: (id: number) => dispatch(setSelectedComplexId({id})),
+  setSelectedApartmentId: (id: number) =>
+    dispatch(setSelectedApartmentId({id})),
 });
 
 export default connect(null, mapDispatchToProps)(Home);

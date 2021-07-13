@@ -48,7 +48,7 @@ class About extends React.Component<any, any> {
       case 'specs':
         return <Specs items={this.state.complex?.specs} />;
       case 'company':
-        return <Company />;
+        return <Company items={this.state.complex?.developers} />;
       case 'docs':
         return <Docs />;
       case 'gallery':

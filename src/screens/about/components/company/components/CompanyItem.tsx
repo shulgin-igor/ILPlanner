@@ -34,8 +34,16 @@ export class CompanyItem extends React.Component<any, any> {
   }
 
   render() {
-    const {id, image, title, founded, completed, inProgress, website, phone} =
-      this.props.data;
+    const {
+      id,
+      image,
+      title,
+      founded,
+      completedCount,
+      inProgressCount,
+      website,
+      phone,
+    } = this.props.data;
     const aboutItems = [
       {
         id: 'founded',
@@ -43,11 +51,11 @@ export class CompanyItem extends React.Component<any, any> {
       },
       {
         id: 'completed',
-        value: completed,
+        value: completedCount,
       },
       {
         id: 'inProgress',
-        value: inProgress,
+        value: inProgressCount,
       },
     ];
 
