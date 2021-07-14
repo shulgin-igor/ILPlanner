@@ -1,31 +1,37 @@
 import React from 'react';
-import {FlatList, TouchableOpacity} from 'react-native';
+import {FlatList, Text, TouchableOpacity} from 'react-native';
 import ImageView from 'react-native-image-viewing';
-import gallery from '../../../../mocks/gallery';
 import GalleryItem from './components/GalleryItem';
 import {ContentContainer} from '../../../../ui/Styles';
 
 export class Gallery extends React.Component<any, any> {
-  public state = {
+  state = {
     visible: false,
     selectedGallery: 0,
   };
-  constructor(props: any) {
-    super(props);
-  }
+
   _renderItem({item, index}: any) {
     return (
       <TouchableOpacity
         onPress={() => this.setState({visible: true, selectedGallery: index})}>
-        <GalleryItem title={item.title} uri={item.items[0].uri} />
+        <GalleryItem title={item.title} uri={item.items[0].url} />
       </TouchableOpacity>
     );
   }
   render() {
+    const {items} = this.props;
+
+    if (!items) {
+      // TODO: empty state
+      return <Text>Empty</Text>;
+    }
+
     return (
       <ContentContainer>
         <ImageView
-          images={gallery[this.state.selectedGallery].items}
+          images={items[this.state.selectedGallery].items.map((item: any) => ({
+            uri: item.url,
+          }))}
           imageIndex={0}
           visible={this.state.visible}
           onRequestClose={() => {
@@ -34,7 +40,7 @@ export class Gallery extends React.Component<any, any> {
         />
         <FlatList
           listKey="gallery"
-          data={gallery}
+          data={items}
           renderItem={item => this._renderItem(item)}
         />
       </ContentContainer>

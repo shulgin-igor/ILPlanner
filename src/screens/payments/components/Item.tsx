@@ -20,7 +20,7 @@ export class Item extends React.Component<any, any> {
         <View style={styles.footer}>
           <View style={styles.footerBlock}>
             <Text style={styles.label}>Метри</Text>
-            <Text style={styles.highlighted}>{meters}</Text>
+            <Text style={styles.highlighted}>{meters} м</Text>
           </View>
           <View style={styles.footerBlock}>
             <Text style={styles.label}>Сума</Text>

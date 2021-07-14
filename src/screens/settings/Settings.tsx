@@ -4,7 +4,6 @@ import {Item, Label, Value} from './Settings.styles';
 import NotificationSelector from './components/NotificationSelector';
 import {TouchableOpacity} from 'react-native';
 import {getSettings} from '../../services/settings.service';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {orangeRed} from '../../ui/Colors';
 
 export default class Settings extends React.Component<any, any> {
@@ -14,7 +13,9 @@ export default class Settings extends React.Component<any, any> {
     this.setState({selectorOpened: state});
   }
 
-  _updateNotificationTime(value: number) {}
+  _updateNotificationTime(value: number) {
+    this._toggleSelectorState(false);
+  }
 
   async componentDidMount() {
     const settings = await getSettings();
@@ -48,7 +49,7 @@ export default class Settings extends React.Component<any, any> {
         <TouchableOpacity>
           <Item>
             <Label>Допомога</Label>
-            <Value>Відкрити чат</Value>
+            <Value>Перейти до чату</Value>
           </Item>
         </TouchableOpacity>
         <Line />

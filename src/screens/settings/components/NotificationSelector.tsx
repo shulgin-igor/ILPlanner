@@ -1,15 +1,7 @@
 import React from 'react';
-import {FlatList, Modal} from 'react-native';
-import {
-  Wrapper,
-  Container,
-  Title,
-  Item,
-  ItemText,
-  CloseButton,
-  Header,
-} from './NotificationSelector.styles';
-import Close from '../../../assets/images/icons/cancel.svg';
+import {FlatList} from 'react-native';
+import {Item, ItemText} from './NotificationSelector.styles';
+import Dialog from '../../../components/dialog/Dialog';
 
 const options = [
   {
@@ -43,27 +35,17 @@ export default class NotificationSelector extends React.Component<any, any> {
 
   render() {
     return (
-      <Modal
-        transparent={true}
-        visible={this.props.opened}
-        animationType="fade">
-        <Wrapper>
-          <Container>
-            <Header>
-              <Title>Нагадування про платіж</Title>
-              <CloseButton onPress={() => this.props.onDismiss()}>
-                <Close width={13} height={13} />
-              </CloseButton>
-            </Header>
-            <FlatList
-              data={options}
-              listKey="notificationOption"
-              keyExtractor={item => item.value}
-              renderItem={item => this._renderItem(item)}
-            />
-          </Container>
-        </Wrapper>
-      </Modal>
+      <Dialog
+        title="Нагадування про платіж"
+        opened={this.props.opened}
+        onDismiss={() => this.props.onDismiss()}>
+        <FlatList
+          data={options}
+          listKey="notificationOption"
+          keyExtractor={item => item.value}
+          renderItem={item => this._renderItem(item)}
+        />
+      </Dialog>
     );
   }
 }

@@ -9,6 +9,8 @@ import {getComplexInfo} from '../../services/complex.service';
 import {RootState} from '../../store';
 import {connect} from 'react-redux';
 import Loading from '../../components/loading/Loading';
+import {ScreenContainer} from '../../ui/Styles';
+import Description from './components/description/Description';
 
 class About extends React.Component<any, any> {
   state: any = {
@@ -63,7 +65,6 @@ class About extends React.Component<any, any> {
   _renderTabBar(props: any) {
     return (
       <View>
-        <View style={{height: 100, backgroundColor: 'red'}} />
         <TabBar
           {...props}
           style={styles.tabBar}
@@ -82,14 +83,25 @@ class About extends React.Component<any, any> {
     if (!this.state.loaded) {
       return <Loading />;
     }
+
     const {routes, index} = this.state;
+    const {logo, title, address, stages} = this.state.complex;
+
     return (
-      <TabView
-        renderTabBar={props => this._renderTabBar(props)}
-        navigationState={{index, routes}}
-        renderScene={route => this._renderScene(route)}
-        onIndexChange={(newIndex: number) => this._setIndex(newIndex)}
-      />
+      <ScreenContainer>
+        <Description
+          logo={logo}
+          title={title}
+          address={address}
+          stages={stages}
+        />
+        <TabView
+          renderTabBar={props => this._renderTabBar(props)}
+          navigationState={{index, routes}}
+          renderScene={route => this._renderScene(route)}
+          onIndexChange={(newIndex: number) => this._setIndex(newIndex)}
+        />
+      </ScreenContainer>
     );
   }
 }

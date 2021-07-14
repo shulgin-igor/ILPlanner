@@ -1,22 +1,31 @@
 import React from 'react';
-import {ActivityIndicator, Text, View} from 'react-native';
 import {Item} from './components/Item';
 import {ScreenContainer, ContentList} from '../../ui/Styles';
 import {getList} from '../../services/payments.service';
 import {RootState} from '../../store';
 import {connect} from 'react-redux';
 import Loading from '../../components/loading/Loading';
+import {Notification, NotificationText} from './components/Payments.styles';
 
 class Payments extends React.Component<any, any> {
-  state = {
+  state: any = {
     items: [],
     isLoaded: false,
+    monthlyPaymentAmount: 37000,
   };
   _renderItem({item}: any) {
     return (
       <Item date={item.date} amount={item.amount} meters={item.metersAmount} />
     );
   }
+
+  _getNotificationText(pendingPayment: boolean) {
+    if (pendingPayment) {
+      return `Очікується щомісячний платіж у розмірі ${this.state.monthlyPaymentAmount} грн до 24 липня`;
+    }
+    return 'Щомісячний платіж зараховано';
+  }
+
   async componentDidMount() {
     const {data} = await getList(this.props.apartmentId);
     // eslint-disable-next-line react/no-did-mount-set-state
@@ -26,9 +35,17 @@ class Payments extends React.Component<any, any> {
     if (!this.state.isLoaded) {
       return <Loading />;
     }
+
+    const pendingPayment =
+      new Date(this.state.items[0].date).getMonth() < new Date().getMonth();
+
     return (
       <ScreenContainer>
-        <View style={{height: 100, backgroundColor: 'red'}} />
+        <Notification pending={pendingPayment}>
+          <NotificationText>
+            {this._getNotificationText(pendingPayment)}
+          </NotificationText>
+        </Notification>
         <ContentList
           listKey="payments"
           data={this.state.items}
