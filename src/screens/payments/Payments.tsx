@@ -1,11 +1,24 @@
 import React from 'react';
-import {Item} from './components/Item';
-import {ScreenContainer, ContentList} from '../../ui/Styles';
+import {ScreenContainer} from '../../ui/Styles';
 import {getList} from '../../services/payments.service';
 import {RootState} from '../../store';
 import {connect} from 'react-redux';
 import Loading from '../../components/loading/Loading';
-import {Notification, NotificationText} from './components/Payments.styles';
+import {Notification, NotificationText} from './Payments.styles';
+import CustomTabBar from '../../components/tab-bar/CustomTabBar';
+import List from './components/list/List';
+import Chart from './components/chart/Chart';
+
+const routes = [
+  {
+    key: 'list',
+    title: 'Історія платежів',
+  },
+  {
+    key: 'chart',
+    title: 'Графік погашення',
+  },
+];
 
 class Payments extends React.Component<any, any> {
   state: any = {
@@ -13,11 +26,11 @@ class Payments extends React.Component<any, any> {
     isLoaded: false,
     monthlyPaymentAmount: 37000,
   };
-  _renderItem({item}: any) {
-    return (
-      <Item date={item.date} amount={item.amount} meters={item.metersAmount} />
-    );
-  }
+  // _renderItem({item}: any) {
+  //   return (
+  //     <Item date={item.date} amount={item.amount} meters={item.metersAmount} />
+  //   );
+  // }
 
   _getNotificationText(pendingPayment: boolean) {
     if (pendingPayment) {
@@ -31,6 +44,18 @@ class Payments extends React.Component<any, any> {
     // eslint-disable-next-line react/no-did-mount-set-state
     this.setState({items: data, isLoaded: true});
   }
+
+  _renderScene({route}: any) {
+    switch (route.key) {
+      case 'list':
+        return <List items={this.state.items} />;
+      case 'chart':
+        return <Chart />;
+      default:
+        return null;
+    }
+  }
+
   render() {
     if (!this.state.isLoaded) {
       return <Loading />;
@@ -46,11 +71,15 @@ class Payments extends React.Component<any, any> {
             {this._getNotificationText(pendingPayment)}
           </NotificationText>
         </Notification>
-        <ContentList
-          listKey="payments"
-          data={this.state.items}
-          renderItem={this._renderItem}
+        <CustomTabBar
+          routes={routes}
+          renderScene={(route: any) => this._renderScene(route)}
         />
+        {/*<ContentList*/}
+        {/*  listKey="payments"*/}
+        {/*  data={this.state.items}*/}
+        {/*  renderItem={this._renderItem}*/}
+        {/*/>*/}
       </ScreenContainer>
     );
   }

@@ -36,7 +36,7 @@ export class CompanyItem extends React.Component<any, any> {
   render() {
     const {
       id,
-      image,
+      logo,
       title,
       founded,
       completedCount,
@@ -73,7 +73,7 @@ export class CompanyItem extends React.Component<any, any> {
     return (
       <Card style={styles.container}>
         <Image
-          source={{width: 140, height: 140, uri: image}}
+          source={{width: 140, height: 140, uri: logo}}
           width={50}
           height={100}
           resizeMode={'contain'}

@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import {Text, View} from 'react-native';
-import {success, warning} from '../../../ui/Colors';
+import {success, warning} from '../../ui/Colors';
 
 export const Notification = styled<any>(View)`
   padding: 20px;
