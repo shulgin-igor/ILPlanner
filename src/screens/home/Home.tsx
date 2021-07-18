@@ -29,7 +29,6 @@ class Home extends React.Component<any, any> {
   }
 
   _onApartmentChanged(data: any) {
-    console.log(data);
     this.props.setSelectedApartmentId(data.id);
     this.props.setSelectedComplexId(data.planning.complex.id);
   }

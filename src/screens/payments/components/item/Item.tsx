@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import Moment from 'moment';
-import {Card} from '../../../ui/Styles';
+import {Card} from '../../../../ui/Styles';
 
 export class Item extends React.Component<any, any> {
   _getMonthFromDate(date: Date): string {

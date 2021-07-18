@@ -25,12 +25,8 @@ class Payments extends React.Component<any, any> {
     items: [],
     isLoaded: false,
     monthlyPaymentAmount: 37000,
+    installmentPlan: null,
   };
-  // _renderItem({item}: any) {
-  //   return (
-  //     <Item date={item.date} amount={item.amount} meters={item.metersAmount} />
-  //   );
-  // }
 
   _getNotificationText(pendingPayment: boolean) {
     if (pendingPayment) {
@@ -42,7 +38,11 @@ class Payments extends React.Component<any, any> {
   async componentDidMount() {
     const {data} = await getList(this.props.apartmentId);
     // eslint-disable-next-line react/no-did-mount-set-state
-    this.setState({items: data, isLoaded: true});
+    this.setState({
+      items: data.payments,
+      installmentPlan: data.installmentPlan,
+      isLoaded: true,
+    });
   }
 
   _renderScene({route}: any) {
@@ -50,7 +50,12 @@ class Payments extends React.Component<any, any> {
       case 'list':
         return <List items={this.state.items} />;
       case 'chart':
-        return <Chart />;
+        return (
+          <Chart
+            payments={this.state.items}
+            plan={this.state.installmentPlan}
+          />
+        );
       default:
         return null;
     }
@@ -75,11 +80,6 @@ class Payments extends React.Component<any, any> {
           routes={routes}
           renderScene={(route: any) => this._renderScene(route)}
         />
-        {/*<ContentList*/}
-        {/*  listKey="payments"*/}
-        {/*  data={this.state.items}*/}
-        {/*  renderItem={this._renderItem}*/}
-        {/*/>*/}
       </ScreenContainer>
     );
   }

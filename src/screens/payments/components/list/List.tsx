@@ -1,6 +1,6 @@
 import React from 'react';
 import {ContentList} from '../../../../ui/Styles';
-import {Item} from '../Item';
+import {Item} from '../item/Item';
 
 export default class List extends React.Component<any, any> {
   _renderItem({item}: any) {
