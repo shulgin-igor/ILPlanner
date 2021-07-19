@@ -5,6 +5,7 @@ import NotificationSelector from './components/NotificationSelector';
 import {TouchableOpacity} from 'react-native';
 import {getSettings} from '../../services/settings.service';
 import {orangeRed} from '../../ui/Colors';
+import {logout} from '../../services/auth.service';
 
 export default class Settings extends React.Component<any, any> {
   state = {selectorOpened: false, notificationDuration: null};
@@ -15,6 +16,10 @@ export default class Settings extends React.Component<any, any> {
 
   _updateNotificationTime(value: number) {
     this._toggleSelectorState(false);
+  }
+
+  async _logout() {
+    await logout();
   }
 
   async componentDidMount() {
@@ -58,11 +63,13 @@ export default class Settings extends React.Component<any, any> {
           <Value>0.0.1</Value>
         </Item>
         <Line />
-        <Item>
-          <Value color={orangeRed} bold={true}>
-            Вихід
-          </Value>
-        </Item>
+        <TouchableOpacity onPress={this._logout}>
+          <Item>
+            <Value color={orangeRed} bold={true}>
+              Вихід
+            </Value>
+          </Item>
+        </TouchableOpacity>
       </ContentContainer>
     );
   }

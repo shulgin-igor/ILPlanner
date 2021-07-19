@@ -1,63 +1,70 @@
 import React from 'react';
-import {
-  Dimensions,
-  Image,
-  Modal,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import ImageZoom from 'react-native-image-pan-zoom';
+import {Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {ContentContainer, Card} from '../../ui/Styles';
+import {ListItem, ItemCaption, ItemValue, Title} from './MyApartment.styles';
+import {RootState} from '../../store';
+import {connect} from 'react-redux';
+import {getApartment} from '../../services/apartments.service';
+import Loading from '../../components/loading/Loading';
+import ImageView from 'react-native-image-viewing';
 
-export class MyApartment extends React.Component<any, any> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      modalVisible: false,
-    };
+class MyApartment extends React.Component<any, any> {
+  state: any = {
+    modalVisible: false,
+    isLoaded: false,
+    apartment: null,
+  };
+
+  async componentDidMount() {
+    const {data} = await getApartment(this.props.apartmentId);
+    // eslint-disable-next-line react/no-did-mount-set-state
+    this.setState({isLoaded: true, apartment: data});
   }
+
   render() {
-    const item = {
-      planning: require('../../assets/mocks/planning.png'),
-    };
+    if (!this.state.isLoaded) {
+      return <Loading />;
+    }
+
+    const {apartment} = this.state;
 
     return (
       <ContentContainer>
-        <Modal visible={this.state.modalVisible} transparent={false}>
-          <ImageZoom
-            cropWidth={Dimensions.get('window').width}
-            cropHeight={Dimensions.get('window').height}
-            imageWidth={Dimensions.get('window').width}
-            imageHeight={350}>
-            <Image
-              source={item.planning}
-              resizeMode="contain"
-              style={styles.layout}
-            />
-          </ImageZoom>
-        </Modal>
+        <ImageView
+          images={apartment.planning.images.map(({url}: any) => ({uri: url}))}
+          imageIndex={0}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {
+            this.setState({modalVisible: false});
+          }}
+        />
         <TouchableOpacity onPress={() => this.setState({modalVisible: true})}>
           <Image
-            source={item.planning}
+            source={apartment.planning.images[0]}
             resizeMode="contain"
             style={styles.layout}
           />
         </TouchableOpacity>
         <Card>
-          <View style={styles.infoItem}>
-            <Text style={styles.infoItemCaption}>Этаж</Text>
-            <Text style={styles.infoItemValue}>17</Text>
-          </View>
-          <View style={styles.infoItem}>
-            <Text style={styles.infoItemCaption}>Квартира</Text>
-            <Text style={styles.infoItemValue}>355</Text>
-          </View>
-          <View style={styles.infoItem}>
-            <Text style={styles.infoItemCaption}>Площадь</Text>
-            <Text style={styles.infoItemValue}>71 м</Text>
-          </View>
+          <Title>Планування {apartment.planning.title}</Title>
+          <ListItem>
+            <ItemCaption>Поверх</ItemCaption>
+            <ItemValue>{apartment.floor}</ItemValue>
+          </ListItem>
+          <ListItem>
+            <ItemCaption>Номер квартири</ItemCaption>
+            <ItemValue>{apartment.number}</ItemValue>
+          </ListItem>
+          <ListItem>
+            <ItemCaption>Площа</ItemCaption>
+            <ItemValue>{apartment.planning.square} м</ItemValue>
+          </ListItem>
+          <ListItem>
+            <ItemCaption>Введення в експлуатацію</ItemCaption>
+            <ItemValue>
+              {apartment.stage.quarter + ' квартал ' + apartment.stage.year}
+            </ItemValue>
+          </ListItem>
         </Card>
       </ContentContainer>
     );
@@ -70,19 +77,10 @@ const styles = StyleSheet.create({
     height: 350,
     marginBottom: 30,
   },
-  infoItem: {
-    flexDirection: 'row',
-    marginBottom: 8,
-  },
-  infoItemCaption: {
-    width: 200,
-    fontSize: 16,
-    lineHeight: 24,
-    color: '#979797',
-  },
-  infoItemValue: {
-    fontSize: 16,
-    lineHeight: 24,
-    color: '#5e76fa',
-  },
 });
+
+const mapStateToProps = (state: RootState) => ({
+  apartmentId: state.app.selectedApartmentId,
+});
+
+export default connect(mapStateToProps)(MyApartment);

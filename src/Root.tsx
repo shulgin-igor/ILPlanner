@@ -7,7 +7,7 @@ import Payments from './screens/payments/Payments';
 import About from './screens/about/About';
 import 'moment/locale/ru';
 import {News} from './screens/news/News';
-import {MyApartment} from './screens/my-apartment/MyApartment';
+import MyApartment from './screens/my-apartment/MyApartment';
 import Back from './assets/images/icons/back.svg';
 import {View} from 'react-native';
 import SignIn from './screens/sign-in/SignIn';
@@ -74,7 +74,7 @@ class Root extends React.Component<any, any> {
   async componentDidMount() {
     const token = await getToken();
 
-    this.props.setAuthenticationStatus(token !== undefined);
+    this.props.setAuthenticationStatus(!!token);
   }
 
   _renderApp() {

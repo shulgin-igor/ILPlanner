@@ -13,3 +13,5 @@ export const requestOTP = (phone: string): Promise<any> =>
 
 export const verifyOTP = (phone: string, otp: string): Promise<any> =>
   Client.post('/auth/verify', {phone, otp});
+
+export const logout = () => AsyncStorage.removeItem('jwt_token');
