@@ -6,7 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Payments from './screens/payments/Payments';
 import About from './screens/about/About';
 import 'moment/locale/ru';
-import {News} from './screens/news/News';
+import News from './screens/news/News';
 import MyApartment from './screens/my-apartment/MyApartment';
 import Back from './assets/images/icons/back.svg';
 import {View} from 'react-native';
@@ -19,6 +19,7 @@ import screenOptions from './config/screenOptions';
 import CloseModalButton from './components/close-modal-button/CloseModalButton';
 import {getToken} from './services/auth.service';
 import {setAuthenticationStatus} from './store/authSlice';
+import NewsPost from './screens/news-post/NewsPost';
 
 const RootStack = createStackNavigator();
 const MainStack = createStackNavigator();
@@ -56,6 +57,11 @@ const MainStackScreen = () => {
         name="News"
         options={{title: 'Новини'}}
         component={News}
+      />
+      <MainStack.Screen
+        name="NewsPost"
+        options={{title: 'Новини'}}
+        component={NewsPost}
       />
       <MainStack.Screen
         name="MyApartment"
