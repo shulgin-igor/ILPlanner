@@ -1,21 +1,26 @@
 import React from 'react';
 import {Container} from './OTPForm.styles';
-import {Text} from 'react-native';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
 import {verifyOTP} from '../../../../services/auth.service';
-import {Label} from '../../SignIn.styles';
+import {Label, ValidationError} from '../../SignIn.styles';
 
 export default class OTPForm extends React.Component<any, any> {
+  state = {
+    validationError: false,
+  };
+
   async _verifyOTP(phone: string, code: string) {
     try {
       const {data} = await verifyOTP(phone, code);
       this.props.onSuccess(data.token);
     } catch (e) {
-      // TODO: process error
+      this.setState({validationError: true});
     }
   }
 
   render() {
+    const {validationError} = this.state;
+
     return (
       <Container>
         <Label>Код подтверждения:</Label>
@@ -37,6 +42,9 @@ export default class OTPForm extends React.Component<any, any> {
             lineHeight: 24,
           }}
         />
+        {validationError && (
+          <ValidationError>Невірний формат телефону</ValidationError>
+        )}
       </Container>
     );
   }

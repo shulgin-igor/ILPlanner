@@ -38,6 +38,7 @@ export default class PhoneForm extends React.Component<any, any> {
             autoCompleteType="tel"
             keyboardType="number-pad"
             maxLength={9}
+            onFocus={() => this.setState({validationError: false})}
             onChangeText={(phone: any) => this.setState({phone})}
           />
           {validationError && (
