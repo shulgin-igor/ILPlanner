@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import {orangeRed} from '../../../../ui/Colors';
 
 export const Container = styled.View`
   flex: 1;
@@ -7,10 +8,10 @@ export const InputContainer = styled.View`
   flex: 1;
   justify-content: center;
 `;
-export const TextInput = styled.TextInput`
+export const TextInput = styled.TextInput<any>`
   width: 100%;
   height: 60px;
-  border: 2px solid #ecebeb;
+  border: 2px solid ${props => (props.hasError ? orangeRed : '#ecebeb')};
   border-radius: 10px;
   font-size: 16px;
   line-height: 24px;

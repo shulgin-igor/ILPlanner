@@ -2,7 +2,8 @@ import React from 'react';
 import {Container} from './OTPForm.styles';
 import {Text} from 'react-native';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
-import {verifyOTP} from '../../../services/auth.service';
+import {verifyOTP} from '../../../../services/auth.service';
+import {Label} from '../../SignIn.styles';
 
 export default class OTPForm extends React.Component<any, any> {
   async _verifyOTP(phone: string, code: string) {
@@ -17,7 +18,7 @@ export default class OTPForm extends React.Component<any, any> {
   render() {
     return (
       <Container>
-        <Text>Код подтверждения:</Text>
+        <Label>Код подтверждения:</Label>
         <OTPInputView
           style={{height: 60}}
           pinCount={4}

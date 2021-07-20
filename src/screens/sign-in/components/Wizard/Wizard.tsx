@@ -2,9 +2,9 @@ import React from 'react';
 import Carousel from 'react-native-snap-carousel';
 import {Dimensions} from 'react-native';
 import {Container} from './Wizard.styles';
-import PhoneForm from './PhoneForm';
-import OTPForm from './OTPForm';
-import {setToken} from '../../../services/auth.service';
+import PhoneForm from '../PhoneForm/PhoneForm';
+import OTPForm from '../OTPForm/OTPForm';
+import {setToken} from '../../../../services/auth.service';
 
 const {width: viewportWidth} = Dimensions.get('window');
 

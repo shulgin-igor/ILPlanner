@@ -21,6 +21,7 @@ instance.interceptors.response.use(
     if (error.response.status === 401) {
       await removeToken();
     }
+    return Promise.reject(error);
   },
 );
 

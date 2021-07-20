@@ -15,16 +15,20 @@ import {
   setSelectedApartmentId,
   setSelectedComplexId,
 } from '../../store/appSlice';
+import Loading from '../../components/loading/Loading';
 
 const {width: viewportWidth} = Dimensions.get('window');
 
 class Home extends React.Component<any, any> {
-  state: any = {items: []};
+  state: any = {
+    items: [],
+    isLoaded: false,
+  };
 
   async componentDidMount() {
     const {data} = await getList();
     // eslint-disable-next-line react/no-did-mount-set-state
-    this.setState({items: data});
+    this.setState({items: data, isLoaded: true});
     this._onApartmentChanged(data[0]);
   }
 
@@ -42,6 +46,10 @@ class Home extends React.Component<any, any> {
   }
 
   render() {
+    if (!this.state.isLoaded) {
+      return <Loading />;
+    }
+
     const items = [
       {
         icon: <Building width={60} height={60} />,

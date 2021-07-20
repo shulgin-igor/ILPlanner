@@ -20,6 +20,7 @@ import CloseModalButton from './components/close-modal-button/CloseModalButton';
 import {getToken} from './services/auth.service';
 import {setAuthenticationStatus} from './store/authSlice';
 import NewsPost from './screens/news-post/NewsPost';
+import SplashScreen from 'react-native-splash-screen';
 
 const RootStack = createStackNavigator();
 const MainStack = createStackNavigator();
@@ -81,6 +82,7 @@ class Root extends React.Component<any, any> {
     const token = await getToken();
 
     this.props.setAuthenticationStatus(!!token);
+    SplashScreen.hide();
   }
 
   _renderApp() {

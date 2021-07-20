@@ -6,8 +6,6 @@ export const getToken = () => AsyncStorage.getItem('jwt_token');
 export const setToken = (token: string) =>
   AsyncStorage.setItem('jwt_token', token);
 
-export const removeToken = () => AsyncStorage.removeItem('access_token');
-
 export const requestOTP = (phone: string): Promise<any> =>
   Client.post('/auth/otp', {phone});
 

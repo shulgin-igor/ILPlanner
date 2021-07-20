@@ -6,8 +6,11 @@ import {TouchableOpacity} from 'react-native';
 import {getSettings} from '../../services/settings.service';
 import {orangeRed} from '../../ui/Colors';
 import {logout} from '../../services/auth.service';
+import {AppDispatch} from '../../store';
+import {setAuthenticationStatus} from '../../store/authSlice';
+import {connect} from 'react-redux';
 
-export default class Settings extends React.Component<any, any> {
+class Settings extends React.Component<any, any> {
   state = {selectorOpened: false, notificationDuration: null};
 
   _toggleSelectorState(state: boolean) {
@@ -20,6 +23,7 @@ export default class Settings extends React.Component<any, any> {
 
   async _logout() {
     await logout();
+    this.props.setAuthenticationStatus(false);
   }
 
   async componentDidMount() {
@@ -63,7 +67,7 @@ export default class Settings extends React.Component<any, any> {
           <Value>0.0.1</Value>
         </Item>
         <Line />
-        <TouchableOpacity onPress={this._logout}>
+        <TouchableOpacity onPress={() => this._logout()}>
           <Item>
             <Value color={orangeRed} bold={true}>
               Вихід
@@ -74,3 +78,10 @@ export default class Settings extends React.Component<any, any> {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
+  setAuthenticationStatus: (data: boolean) =>
+    dispatch(setAuthenticationStatus(data)),
+});
+
+export default connect(null, mapDispatchToProps)(Settings);
