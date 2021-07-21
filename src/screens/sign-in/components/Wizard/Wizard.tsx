@@ -5,15 +5,23 @@ import {Container} from './Wizard.styles';
 import PhoneForm from '../PhoneForm/PhoneForm';
 import OTPForm from '../OTPForm/OTPForm';
 import {setToken} from '../../../../services/auth.service';
+import {AppDispatch} from '../../../../store';
+import {connect} from 'react-redux';
+import {setAuthenticationStatus} from '../../../../store/authSlice';
 
 const {width: viewportWidth} = Dimensions.get('window');
 
-export default class Wizard extends React.Component<any, any> {
+class Wizard extends React.Component<any, any> {
   _carousel: any;
 
   state = {
     phone: null,
   };
+
+  async _onOTPSuccess(token: string) {
+    await setToken(token);
+    this.props.completeAuth();
+  }
 
   _renderItem({item}: any) {
     if (item === 'phone') {
@@ -29,9 +37,7 @@ export default class Wizard extends React.Component<any, any> {
       return (
         <OTPForm
           phone={this.state.phone}
-          onSuccess={async (token: string) => {
-            await setToken(token);
-          }}
+          onSuccess={(token: string) => this._onOTPSuccess(token)}
         />
       );
     }
@@ -57,3 +63,9 @@ export default class Wizard extends React.Component<any, any> {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
+  completeAuth: () => dispatch(setAuthenticationStatus(true)),
+});
+
+export default connect(null, mapDispatchToProps)(Wizard);

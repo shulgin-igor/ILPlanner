@@ -26,6 +26,18 @@ export const getPaymentsChartData = (
     );
 };
 
+export const getMonthlyMeters = (payments: any[], installmentPlan: any) => {
+  // TODO: this code is duplicated
+  const durationLeft = installmentPlan.duration - payments.length;
+  const metersLeft =
+    installmentPlan.meters -
+    payments.reduce((acc, item) => {
+      acc += item.metersAmount;
+      return acc;
+    }, 0);
+  return metersLeft / durationLeft;
+};
+
 export const getPaymentChartLabels = (installmentPlan: any): any[] => {
   const startDate = moment(new Date(installmentPlan.startDate));
   return [...Array(installmentPlan.duration)].map((_, index) =>

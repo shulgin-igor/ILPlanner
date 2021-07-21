@@ -1,10 +1,12 @@
 import styled from 'styled-components/native';
 import {TouchableOpacity, View} from 'react-native';
+import {cornFlower} from '../../../../ui/Colors';
 
 export const Container = styled(View)`
-  padding: 30px;
+  padding: 62px 30px 32px;
   flex-direction: row;
   justify-content: space-between;
+  background-color: ${cornFlower};
 `;
 
 export const ButtonsContainer = styled(View)`

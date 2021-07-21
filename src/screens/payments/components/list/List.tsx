@@ -1,6 +1,7 @@
 import React from 'react';
 import {ContentList} from '../../../../ui/Styles';
 import {Item} from '../item/Item';
+import EmptyState from '../../../../components/empty-state/EmptyState';
 
 export default class List extends React.Component<any, any> {
   _renderItem({item}: any) {
@@ -10,10 +11,16 @@ export default class List extends React.Component<any, any> {
   }
 
   render() {
+    const {items} = this.props;
+
+    if (!items.length) {
+      return <EmptyState text="У вас ще немає платежів" />;
+    }
+
     return (
       <ContentList
         listKey="payments"
-        data={this.props.items}
+        data={items}
         renderItem={this._renderItem}
       />
     );

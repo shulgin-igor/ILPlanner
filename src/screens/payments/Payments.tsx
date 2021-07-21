@@ -1,6 +1,6 @@
 import React from 'react';
 import {ScreenContainer} from '../../ui/Styles';
-import {getList} from '../../services/payments.service';
+import {getList, getMonthlyMeters} from '../../services/payments.service';
 import {RootState} from '../../store';
 import {connect} from 'react-redux';
 import Loading from '../../components/loading/Loading';
@@ -8,6 +8,7 @@ import {Notification, NotificationText} from './Payments.styles';
 import CustomTabBar from '../../components/tab-bar/CustomTabBar';
 import List from './components/list/List';
 import Chart from './components/chart/Chart';
+import moment from 'moment';
 
 const routes = [
   {
@@ -24,13 +25,22 @@ class Payments extends React.Component<any, any> {
   state: any = {
     items: [],
     isLoaded: false,
-    monthlyPaymentAmount: 37000,
     installmentPlan: null,
+    price: null,
   };
 
   _getNotificationText(pendingPayment: boolean) {
     if (pendingPayment) {
-      return `Очікується щомісячний платіж у розмірі ${this.state.monthlyPaymentAmount} грн до 24 липня`;
+      const {price, installmentPlan, items} = this.state;
+      const monthlyMeters = getMonthlyMeters(items, installmentPlan);
+      const dueDate =
+        new Date(installmentPlan.startDate).getDate() +
+        '.' +
+        moment().format('MM');
+
+      return `Очікується щомісячний платіж у розмірі\n ${
+        monthlyMeters * price.value
+      } грн до ${dueDate}`;
     }
     return 'Щомісячний платіж зараховано';
   }
@@ -39,8 +49,7 @@ class Payments extends React.Component<any, any> {
     const {data} = await getList(this.props.apartmentId);
     // eslint-disable-next-line react/no-did-mount-set-state
     this.setState({
-      items: data.payments,
-      installmentPlan: data.installmentPlan,
+      ...data,
       isLoaded: true,
     });
   }
@@ -66,8 +75,12 @@ class Payments extends React.Component<any, any> {
       return <Loading />;
     }
 
-    const pendingPayment =
-      new Date(this.state.items[0].date).getMonth() < new Date().getMonth();
+    let pendingPayment = true;
+
+    if (this.state.items.length) {
+      pendingPayment =
+        new Date(this.state.items[0].date).getMonth() < new Date().getMonth();
+    }
 
     return (
       <ScreenContainer>

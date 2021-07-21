@@ -16,8 +16,32 @@ import {
   setSelectedComplexId,
 } from '../../store/appSlice';
 import Loading from '../../components/loading/Loading';
+import {ScreenContainer} from '../../ui/Styles';
+import {CarouselContainer, EmptyStateContainer, EmptyText} from './Home.styles';
 
 const {width: viewportWidth} = Dimensions.get('window');
+const navigationItems = [
+  {
+    icon: <Building width={60} height={60} />,
+    caption: 'Про ЖК',
+    link: 'About',
+  },
+  {
+    icon: <Wallet width={60} height={60} />,
+    caption: 'Платежи',
+    link: 'Payments',
+  },
+  {
+    icon: <Door width={60} height={60} />,
+    caption: 'Моя квартира',
+    link: 'MyApartment',
+  },
+  {
+    icon: <Megaphone width={60} height={60} />,
+    caption: 'Новости',
+    link: 'News',
+  },
+];
 
 class Home extends React.Component<any, any> {
   state: any = {
@@ -45,54 +69,36 @@ class Home extends React.Component<any, any> {
     return <CarouselItem data={item} />;
   }
 
-  render() {
-    if (!this.state.isLoaded) {
-      return <Loading />;
+  _renderContent() {
+    const {items} = this.state;
+
+    if (items.length === 0) {
+      return (
+        <EmptyStateContainer>
+          <Door width="100" height="100" />
+          <EmptyText>У вас немає активних розстрочок</EmptyText>
+        </EmptyStateContainer>
+      );
     }
-
-    const items = [
-      {
-        icon: <Building width={60} height={60} />,
-        caption: 'Про ЖК',
-        link: 'About',
-      },
-      {
-        icon: <Wallet width={60} height={60} />,
-        caption: 'Платежи',
-        link: 'Payments',
-      },
-      {
-        icon: <Door width={60} height={60} />,
-        caption: 'Моя квартира',
-        link: 'MyApartment',
-      },
-      {
-        icon: <Megaphone width={60} height={60} />,
-        caption: 'Новости',
-        link: 'News',
-      },
-    ];
-
     return (
-      <View style={styles.screenContainer}>
-        <View style={styles.carouselContainer}>
-          <Header />
+      <View>
+        <CarouselContainer>
           <Carousel
-            data={this.state.items}
+            data={items}
             renderItem={this._renderCarouselItem}
             sliderWidth={viewportWidth}
             itemWidth={viewportWidth - 54}
-            scrollEnabled={this.state.items > 1}
+            scrollEnabled={items.length > 1}
             onSnapToItem={index => {
               const data = this.state.items[index];
               this._onApartmentChanged(data);
             }}
           />
-        </View>
+        </CarouselContainer>
         <FlatList
           listKey="home"
           style={styles.list}
-          data={items}
+          data={navigationItems}
           keyExtractor={({link}) => link}
           renderItem={this._renderItem}
           numColumns={2}
@@ -101,17 +107,22 @@ class Home extends React.Component<any, any> {
       </View>
     );
   }
+
+  render() {
+    if (!this.state.isLoaded) {
+      return <Loading />;
+    }
+
+    return (
+      <ScreenContainer>
+        <Header />
+        {this._renderContent()}
+      </ScreenContainer>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-  screenContainer: {
-    flex: 1,
-  },
-  carouselContainer: {
-    backgroundColor: '#5e76fa',
-    paddingTop: 32,
-    paddingBottom: 37,
-  },
   list: {
     paddingTop: 25,
     paddingHorizontal: 28,
