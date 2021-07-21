@@ -3,6 +3,7 @@ import {Container} from './OTPForm.styles';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
 import {verifyOTP} from '../../../../services/auth.service';
 import {Label, ValidationError} from '../../SignIn.styles';
+import {orangeRed} from '../../../../ui/Colors';
 
 export default class OTPForm extends React.Component<any, any> {
   state = {
@@ -23,7 +24,7 @@ export default class OTPForm extends React.Component<any, any> {
 
     return (
       <Container>
-        <Label>Код подтверждения:</Label>
+        <Label>Код підтвердження:</Label>
         <OTPInputView
           style={{height: 60}}
           pinCount={4}
@@ -33,7 +34,7 @@ export default class OTPForm extends React.Component<any, any> {
           }
           codeInputFieldStyle={{
             color: '#4f5f8e',
-            borderColor: '#ecebeb',
+            borderColor: validationError ? orangeRed : '#ecebeb',
             borderWidth: 2,
             borderRadius: 10,
             height: 60,
@@ -43,7 +44,7 @@ export default class OTPForm extends React.Component<any, any> {
           }}
         />
         {validationError && (
-          <ValidationError>Невірний формат телефону</ValidationError>
+          <ValidationError>Невірно введено код</ValidationError>
         )}
       </Container>
     );
