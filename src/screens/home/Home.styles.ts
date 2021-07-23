@@ -2,19 +2,19 @@ import styled from 'styled-components/native';
 import {Text, View} from 'react-native';
 import {cornFlower} from '../../ui/Colors';
 
-export const CarouselContainer = styled(View)`
+export const CarouselContainer = styled.View`
   background-color: ${cornFlower};
   padding-bottom: 37px;
 `;
 
-export const EmptyStateContainer = styled(View)`
+export const EmptyStateContainer = styled.View`
   flex: 1;
   background-color: ${cornFlower};
   justify-content: center;
   align-items: center;
 `;
 
-export const EmptyText = styled(Text)`
+export const EmptyText = styled.Text`
   color: #fff;
   font-size: 24px;
   line-height: 32px;

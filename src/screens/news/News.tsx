@@ -5,6 +5,8 @@ import {getNews} from '../../services/news.service';
 import Loading from '../../components/loading/Loading';
 import {RootState} from '../../store';
 import {connect} from 'react-redux';
+import {Title, Date} from './News.styles';
+import moment from 'moment';
 
 class News extends React.Component<any, any> {
   state = {
@@ -25,7 +27,8 @@ class News extends React.Component<any, any> {
           this.props.navigation.navigate('NewsPost', {postId: item.id})
         }>
         <Card>
-          <Text>{item.title}</Text>
+          <Title>{item.title}</Title>
+          <Date>{moment(item.createdAt).format('DD MMM YYYY')}</Date>
         </Card>
       </TouchableOpacity>
     );

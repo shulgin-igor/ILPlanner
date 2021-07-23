@@ -38,6 +38,7 @@ class Wizard extends React.Component<any, any> {
         <OTPForm
           phone={this.state.phone}
           onSuccess={(token: string) => this._onOTPSuccess(token)}
+          onChangeNumber={() => this._carousel.snapToPrev()}
         />
       );
     }

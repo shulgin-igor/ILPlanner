@@ -1,9 +1,10 @@
 import React from 'react';
-import {Container} from './OTPForm.styles';
+import {Container, ChangeNumber} from './OTPForm.styles';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
 import {verifyOTP} from '../../../../services/auth.service';
 import {Label, ValidationError} from '../../SignIn.styles';
 import {orangeRed} from '../../../../ui/Colors';
+import {TouchableOpacity} from 'react-native';
 
 export default class OTPForm extends React.Component<any, any> {
   state = {
@@ -46,6 +47,9 @@ export default class OTPForm extends React.Component<any, any> {
         {validationError && (
           <ValidationError>Невірно введено код</ValidationError>
         )}
+        <TouchableOpacity onPress={() => this.props.onChangeNumber()}>
+          <ChangeNumber>Змінити номер</ChangeNumber>
+        </TouchableOpacity>
       </Container>
     );
   }

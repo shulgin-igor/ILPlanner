@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, FlatList} from 'react-native';
 import {Card} from '../../../../../ui/Styles';
+import {Title} from './CompanyItem.styles';
 
 const aboutCaptions: any = {
   founded: 'рік заснування',
@@ -71,7 +72,7 @@ export class CompanyItem extends React.Component<any, any> {
     ];
 
     return (
-      <Card style={styles.container}>
+      <Card>
         <Image
           source={{width: 140, height: 140, uri: logo}}
           width={50}
@@ -79,7 +80,7 @@ export class CompanyItem extends React.Component<any, any> {
           resizeMode={'contain'}
           style={styles.logo}
         />
-        <Text style={styles.title}>{title}</Text>
+        <Title>{title}</Title>
         <FlatList
           style={styles.aboutList}
           data={aboutItems}
@@ -101,19 +102,8 @@ export class CompanyItem extends React.Component<any, any> {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    marginBottom: 20,
-  },
   logo: {
     alignSelf: 'center',
-  },
-  title: {
-    textAlign: 'center',
-    fontSize: 32,
-    fontWeight: 'bold',
-    lineHeight: 32,
-    color: '#4f5f8e',
-    marginVertical: 10,
   },
   aboutList: {
     marginVertical: 10,

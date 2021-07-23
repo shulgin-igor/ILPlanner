@@ -1,6 +1,11 @@
 import styled from 'styled-components/native';
 import {Text, TouchableOpacity, View} from 'react-native';
-import {brownGrey, cornFlower} from '../../../../ui/Colors';
+import {
+  brownGrey,
+  cornFlower,
+  slateBlue,
+  veryLightPink,
+} from '../../../../ui/Colors';
 
 export const Container = styled(View)`
   padding: 20px;
@@ -37,12 +42,12 @@ export const StageItem = styled(View)`
 `;
 
 export const StageTitle = styled(Text)`
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
-  font-weight: 700;
-  color: ${brownGrey};
+  font-weight: 500;
+  color: ${veryLightPink};
 `;
 
 export const StageDate = styled(StageTitle)`
-  font-weight: 500;
+  color: ${slateBlue};
 `;

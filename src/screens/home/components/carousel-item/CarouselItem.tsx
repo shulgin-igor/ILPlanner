@@ -2,16 +2,18 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import * as Progress from 'react-native-progress';
 import Checked from '../../../../assets/images/icons/checked.svg';
+import {Container, Heading, Title, Address} from './CarouselItem.styles';
 
 export class CarouselItem extends React.Component<any, any> {
   render() {
-    const {title, progress, address} = this.props.data;
+    const progress = 0;
+    const {title, address} = this.props.data.planning.complex;
     return (
-      <View style={styles.item}>
-        <View style={styles.heading}>
-          <Text style={styles.title}>{title}</Text>
-          <Text>{address}</Text>
-        </View>
+      <Container>
+        <Heading>
+          <Title>{title}</Title>
+          <Address>{address}</Address>
+        </Heading>
         <View>
           <View style={styles.monthly}>
             <Checked width={20} height={20} fill="#fff" />
@@ -27,29 +29,12 @@ export class CarouselItem extends React.Component<any, any> {
             {progress * 100}% выплачено
           </Text>
         </View>
-      </View>
+      </Container>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  item: {
-    height: 250,
-    backgroundColor: 'rgba(255, 255, 255, 0.4)',
-    borderRadius: 10,
-    paddingHorizontal: 13,
-    justifyContent: 'space-between',
-    paddingVertical: 28,
-  },
-  heading: {
-    flex: 1,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    lineHeight: 36,
-    color: '#ffffff',
-  },
   progressCaption: {
     fontSize: 12,
     fontWeight: '500',
