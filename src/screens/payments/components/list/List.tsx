@@ -12,6 +12,7 @@ export default class List extends React.Component<any, any> {
 
   render() {
     const {items} = this.props;
+    console.log(items);
 
     if (!items.length) {
       return <EmptyState text="У вас ще немає платежів" />;

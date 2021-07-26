@@ -1,12 +1,8 @@
 import styled from 'styled-components/native';
-import {brownGrey, cornFlower, veryLightPink} from '../../../../ui/Colors';
 
 export const Container = styled.View`
-  height: 250px;
-  background-color: rgba(255, 255, 255, 0.4);
-  border-radius: 10px;
-  padding: 28px 13px;
   justify-content: space-between;
+  margin-bottom: 20px;
 `;
 
 export const Heading = styled.View``;

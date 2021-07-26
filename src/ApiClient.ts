@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {getToken, removeToken} from './services/auth.service';
+import {getToken, logout} from './services/auth.service';
 
 const instance = axios.create({
   baseURL: 'http://127.0.0.1:3000/',
@@ -19,7 +19,7 @@ instance.interceptors.response.use(
   response => response,
   async error => {
     if (error.response.status === 401) {
-      await removeToken();
+      await logout();
     }
     return Promise.reject(error);
   },

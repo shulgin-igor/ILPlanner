@@ -23,7 +23,7 @@ const routes = [
 
 class Payments extends React.Component<any, any> {
   state: any = {
-    items: [],
+    payments: [],
     isLoaded: false,
     installmentPlan: null,
     price: null,
@@ -57,11 +57,11 @@ class Payments extends React.Component<any, any> {
   _renderScene({route}: any) {
     switch (route.key) {
       case 'list':
-        return <List items={this.state.items} />;
+        return <List items={this.state.payments} />;
       case 'chart':
         return (
           <Chart
-            payments={this.state.items}
+            payments={this.state.payments}
             plan={this.state.installmentPlan}
           />
         );
@@ -77,9 +77,10 @@ class Payments extends React.Component<any, any> {
 
     let pendingPayment = true;
 
-    if (this.state.items.length) {
+    if (this.state.payments.length) {
       pendingPayment =
-        new Date(this.state.items[0].date).getMonth() < new Date().getMonth();
+        new Date(this.state.payments[0].date).getMonth() <
+        new Date().getMonth();
     }
 
     return (

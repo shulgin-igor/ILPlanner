@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions, FlatList, StyleSheet, View} from 'react-native';
+import {Dimensions, FlatList} from 'react-native';
 import Item from './components/item/Item';
 import Carousel from 'react-native-snap-carousel';
 import {CarouselItem} from './components/carousel-item/CarouselItem';
@@ -18,27 +18,30 @@ import {
 import Loading from '../../components/loading/Loading';
 import {ScreenContainer} from '../../ui/Styles';
 import {CarouselContainer, EmptyStateContainer, EmptyText} from './Home.styles';
+import BottomSheet, {BottomSheetFlatList} from '@gorhom/bottom-sheet';
+import {getFeed} from '../../services/home.service';
+import NavigationItem from './components/navigation-item/NavigationItem';
 
 const {width: viewportWidth} = Dimensions.get('window');
 const navigationItems = [
   {
-    icon: <Building width={60} height={60} />,
+    icon: <Wallet width={30} height={30} fill="#fff" />,
+    caption: 'Платежі',
+    link: 'Payments',
+  },
+  {
+    icon: <Door width={30} height={30} fill="#fff" />,
+    caption: 'Квартира',
+    link: 'MyApartment',
+  },
+  {
+    icon: <Building width={30} height={30} fill="#fff" />,
     caption: 'Про ЖК',
     link: 'About',
   },
   {
-    icon: <Wallet width={60} height={60} />,
-    caption: 'Платежи',
-    link: 'Payments',
-  },
-  {
-    icon: <Door width={60} height={60} />,
-    caption: 'Моя квартира',
-    link: 'MyApartment',
-  },
-  {
-    icon: <Megaphone width={60} height={60} />,
-    caption: 'Новости',
+    icon: <Megaphone width={30} height={30} fill="#fff" />,
+    caption: 'Новини',
     link: 'News',
   },
 ];
@@ -46,6 +49,7 @@ const navigationItems = [
 class Home extends React.Component<any, any> {
   state: any = {
     items: [],
+    feed: [],
     isLoaded: false,
   };
 
@@ -56,17 +60,30 @@ class Home extends React.Component<any, any> {
     this._onApartmentChanged(data[0]);
   }
 
-  _onApartmentChanged(data: any) {
-    this.props.setSelectedApartmentId(data.id);
-    this.props.setSelectedComplexId(data.planning.complex.id);
+  async _onApartmentChanged(apartment: any) {
+    const {data} = await getFeed(apartment.id);
+    this.setState({feed: data});
+
+    this.props.setSelectedApartmentId(apartment.id);
+    this.props.setSelectedComplexId(apartment.planning.complex.id);
   }
 
   _renderItem({item}: any) {
-    return <Item icon={item.icon} caption={item.caption} link={item.link} />;
+    return <Item type={item.type} caption={item.caption} date={item.date} />;
   }
 
   _renderCarouselItem({item}: any) {
     return <CarouselItem data={item} />;
+  }
+
+  _renderNavigationItem({item}: any) {
+    return (
+      <NavigationItem
+        icon={item.icon}
+        caption={item.caption}
+        link={item.link}
+      />
+    );
   }
 
   _renderContent() {
@@ -81,10 +98,11 @@ class Home extends React.Component<any, any> {
       );
     }
     return (
-      <View>
+      <ScreenContainer>
         <CarouselContainer>
           <Carousel
             data={items}
+            inactiveSlideOpacity={0.3}
             renderItem={this._renderCarouselItem}
             sliderWidth={viewportWidth}
             itemWidth={viewportWidth - 54}
@@ -94,17 +112,23 @@ class Home extends React.Component<any, any> {
               this._onApartmentChanged(data);
             }}
           />
+          <FlatList
+            data={navigationItems}
+            renderItem={this._renderNavigationItem}
+            numColumns={navigationItems.length}
+            columnWrapperStyle={{justifyContent: 'space-between'}}
+            contentContainerStyle={{paddingHorizontal: 20}}
+          />
         </CarouselContainer>
-        <FlatList
-          listKey="home"
-          style={styles.list}
-          data={navigationItems}
-          keyExtractor={({link}) => link}
-          renderItem={this._renderItem}
-          numColumns={2}
-          scrollEnabled={false}
-        />
-      </View>
+        <BottomSheet
+          style={{marginHorizontal: '2%'}}
+          snapPoints={['50%', '90%']}>
+          <BottomSheetFlatList
+            data={this.state.feed}
+            renderItem={this._renderItem}
+          />
+        </BottomSheet>
+      </ScreenContainer>
     );
   }
 
@@ -121,13 +145,6 @@ class Home extends React.Component<any, any> {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  list: {
-    paddingTop: 25,
-    paddingHorizontal: 28,
-  },
-});
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
   setSelectedComplexId: (id: number) => dispatch(setSelectedComplexId({id})),

@@ -1,5 +1,4 @@
 import styled from 'styled-components/native';
-import {Text, View} from 'react-native';
 import {cornFlower} from '../../ui/Colors';
 
 export const CarouselContainer = styled.View`
