@@ -35,7 +35,7 @@ export default class PhoneForm extends React.Component<any, any> {
       this.props.onSuccess(phone);
     } catch (e) {
       this.setState({validationError: true});
-      console.log('error', e.response.status);
+      console.log('error', e);
     }
   }
 
