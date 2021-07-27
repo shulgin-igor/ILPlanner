@@ -13,10 +13,11 @@ export const TextInput = styled.TextInput<any>`
   height: 60px;
   border: 2px solid ${props => (props.hasError ? orangeRed : '#ecebeb')};
   border-radius: 10px;
-  font-size: 16px;
-  line-height: 24px;
-  text-align: center;
+  font-size: 24px;
+  line-height: 32px;
   color: #4f5f8e;
+  font-weight: 700;
+  padding-left: 50px;
 `;
 
 export const Button = styled.TouchableOpacity`

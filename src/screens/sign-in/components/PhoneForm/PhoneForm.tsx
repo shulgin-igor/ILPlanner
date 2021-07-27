@@ -9,9 +9,22 @@ import {
 } from './PhoneForm.styles';
 import {Label, ValidationError} from '../../SignIn.styles';
 
+const clearPhone = (value: string): string =>
+  value.replace('+380', '').replace(/\s/g, '');
+
+const formatPhone = (phone: string): string =>
+  '+380 ' +
+  Array.from(clearPhone(phone)).reduce((acc, item, index) => {
+    if (index === 2 || index === 5 || index === 7) {
+      acc += ' ';
+    }
+    acc += item;
+    return acc;
+  }, '');
+
 export default class PhoneForm extends React.Component<any, any> {
   state = {
-    phone: '',
+    phone: '+380',
     validationError: false,
   };
 
@@ -27,7 +40,7 @@ export default class PhoneForm extends React.Component<any, any> {
   }
 
   render() {
-    const {validationError} = this.state;
+    const {validationError, phone} = this.state;
 
     return (
       <Container>
@@ -37,15 +50,21 @@ export default class PhoneForm extends React.Component<any, any> {
             hasError={validationError}
             autoCompleteType="tel"
             keyboardType="number-pad"
-            maxLength={9}
+            maxLength={17}
+            value={phone}
             onFocus={() => this.setState({validationError: false})}
-            onChangeText={(phone: any) => this.setState({phone})}
+            returnKeyType="done"
+            onChangeText={(value: any) => {
+              this.setState({
+                phone: formatPhone(value.replace(/\s/g, '')),
+              });
+            }}
           />
           {validationError && (
             <ValidationError>Невірний формат телефону</ValidationError>
           )}
         </InputContainer>
-        <Button onPress={() => this._requestOTP(this.state.phone)}>
+        <Button onPress={() => this._requestOTP(clearPhone(phone))}>
           <ButtonText>Далі</ButtonText>
         </Button>
       </Container>

@@ -8,6 +8,7 @@ import {TouchableOpacity} from 'react-native';
 
 export default class OTPForm extends React.Component<any, any> {
   state = {
+    code: undefined,
     validationError: false,
   };
 
@@ -27,9 +28,11 @@ export default class OTPForm extends React.Component<any, any> {
       <Container>
         <Label>Код підтвердження:</Label>
         <OTPInputView
+          code={this.state.code}
           style={{height: 60}}
           pinCount={4}
           autoFocusOnLoad={false}
+          onCodeChanged={code => this.setState({code})}
           onCodeFilled={(code: string) =>
             this._verifyOTP(this.props.phone, code)
           }
@@ -40,14 +43,19 @@ export default class OTPForm extends React.Component<any, any> {
             borderRadius: 10,
             height: 60,
             width: 60,
-            fontSize: 16,
-            lineHeight: 24,
+            fontSize: 24,
+            lineHeight: 32,
+            fontWeight: 'bold',
           }}
         />
         {validationError && (
           <ValidationError>Невірно введено код</ValidationError>
         )}
-        <TouchableOpacity onPress={() => this.props.onChangeNumber()}>
+        <TouchableOpacity
+          onPress={() => {
+            this.setState({validationError: false, code: undefined});
+            this.props.onChangeNumber();
+          }}>
           <ChangeNumber>Змінити номер</ChangeNumber>
         </TouchableOpacity>
       </Container>
